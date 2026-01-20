@@ -12,13 +12,16 @@ async function getTodos() {
 }
 
 export async function getTodosByUserId(id: number) {
-    const user = await filterUserById(id)
-    if (typeof user === "string" || !user) return "Invalid id"
+    try {
+        const user = await filterUserById(id)
+        if (typeof user === "string" || !user) return "Invalid id"
 
-    const todos = await getTodos()
+        const todos = await getTodos()
 
-    const user_todos = todos.filter((todo: {userId:number}) => todo.userId == id)
+        const user_todos = todos.filter((todo: { userId: number }) => todo.userId == id)
 
-    return { ...user, todos: user_todos || [] }
-
+        return { ...user, todos: user_todos || [] }
+    } catch (error) {
+        return "Invalid id"
+    }
 }
