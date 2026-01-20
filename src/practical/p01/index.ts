@@ -4,12 +4,14 @@ export async function getPostalAddress() {
   const res = await axios.get("https://jsonplaceholder.typicode.com/users")
   const users = res.data
 
-  const output = users.map(user => ({
-    id: user.id,
-    name: user.name,
-    phone: user.phone,
-    address: user.address
-  }))
+  const output = users.map(user => {
+    return {
+      id: user.id,
+      name: user.name,
+      phone: user.phone,
+      address: user.address,
+    }
+  })
   return output
 }
 
