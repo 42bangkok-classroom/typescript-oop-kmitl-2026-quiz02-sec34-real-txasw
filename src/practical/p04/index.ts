@@ -18,5 +18,3 @@ export async function getTodosByUserId(id: number) {
 
     return {...user, todos: user_todos ?? []}
 }
-
-getTodosByUserId(7).then((x) => console.log(x))
