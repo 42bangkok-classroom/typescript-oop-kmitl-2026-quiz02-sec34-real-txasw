@@ -6,3 +6,4 @@ export async function filterUserById(id: number) {
     if (!found) return "Invalid id"
     return found
 }
+
