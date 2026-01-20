@@ -31,5 +31,5 @@ export async function addUser(newUser: newUser | null) {
     phone: newUser?.phone,
     address: newUser?.address ?? null
   }
-  return [...users, newUser]
+  return [...users, newuser]
 }
