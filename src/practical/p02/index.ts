@@ -23,14 +23,13 @@ type newUser = {
   };
 };
 export async function addUser(newUser: newUser | null) {
-  let users = await getPostalAddress()
+  const users = await getPostalAddress()
   if (!newUser) return users
-  const newu = {
-    id: users.length,
-    name: newUser.name,
-    phone: newUser.phone,
-    address: newUser.address ?? null,
+  const newuser = {
+    id: users[-1].id + 1,
+    name: newUser?.name,
+    phone: newUser?.phone,
+    address: newUser?.address ?? null
   }
-  users.push(newu);
-  return users;
+  return [...users, newUser]
 }

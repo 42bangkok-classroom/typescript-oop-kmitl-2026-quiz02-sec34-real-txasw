@@ -9,7 +9,7 @@ export async function getPostalAddress(){
       id: user.id,
       name: user.name,
       phone: user.phone,
-      address: user.address,
+      address: user.address ?? null,
     }
   })
   return output
