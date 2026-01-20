@@ -9,7 +9,7 @@ async function getTodos() {
 
 export async function getTodosByUserId(id: number) {
     const user = await filterUserById(id)
-    if (!user) return "Invalid id"
+    // if (!user) return "Invalid id"
     if (typeof user === "string") return "Invalid id"
 
     const todos = await getTodos()
