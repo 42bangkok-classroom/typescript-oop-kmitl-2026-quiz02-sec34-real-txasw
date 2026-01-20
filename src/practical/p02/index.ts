@@ -26,10 +26,11 @@ export async function addUser(newUser: newUser | null) {
   const users = await getPostalAddress()
   if (!newUser) return users
   const newuser = {
-    id: users[-1].id + 1,
+    id: users.at(-1).id + 1,
     name: newUser?.name,
     phone: newUser?.phone,
     address: newUser?.address ?? null
   }
-  return [...users, newuser]
+  const output = [...users, newuser]
+  return output
 }
