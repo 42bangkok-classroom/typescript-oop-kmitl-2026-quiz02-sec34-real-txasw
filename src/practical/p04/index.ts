@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getPostalAddress } from "../p01";
+import { filterUserById } from "../p03";
 
 async function getTodos() {
     try {
@@ -12,14 +12,14 @@ async function getTodos() {
 }
 
 export async function getTodosByUserId(id: number) {
-    let todos = await getTodos();
-    let users = await getPostalAddress();
+    const user = await filterUserById(id)
+    if (!Array.isArray(user)) return "Invalid id"
+    if (user.length === 0) return "Invalid id"
 
-    let filterUser = users.filter((user: { id: number; }) => user.id == id);
-    let filterTodo = todos.filter((todo: { userId: number; }) => todo.userId == id);
-    if (filterUser.length == 1) {
-        return { ...filterUser[0], todos: filterTodo };
-    } else {
-        return "Invalid id";
-    }
+    const todos = await getTodos()
+
+    const user_todos = todos.filter((todo: {userId:number}) => todo.userId == id)
+
+    return { ...user, todos: user_todos || [] }
+
 }
