@@ -4,7 +4,7 @@ import { filterUserById } from "../p03";
 async function getTodos() {
     const res = await axios.get("https://jsonplaceholder.typicode.com/todos")
     const todos = res.data
-    return todos ?? []
+    return todos || []
 }
 
 export async function getTodosByUserId(id: number) {
@@ -16,5 +16,7 @@ export async function getTodosByUserId(id: number) {
 
     const user_todos = todos.filter((todo: {userId:number}) => todo.userId == user.id)
 
-    return {...user, todos: user_todos??[]}
+    return {...user, todos: user_todos ?? []}
 }
+
+getTodosByUserId(7).then((x) => console.log(x))
